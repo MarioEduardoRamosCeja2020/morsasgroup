@@ -5,22 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Outlet</title>
+
+    <link rel="stylesheet" href="css/imageNavbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
 </head>
 
-<body ng-app="miApp">
+<body ng-app="myApp">
 
-    <div ng-controller="miControlador">
-        <h1>{{ mensaje }}</h1>
+    <div ng-controller="myController">
+        <h1>{{ message }}</h1>
     </div>
 
     <script>
-        angular.module('miApp', [])
-            .controller('miControlador', function($scope) {
-                $scope.mensaje = 'Initial project!';
+        angular.module('myApp', [])
+            .controller('myController', function($scope) {
+                $scope.message = 'Productos outlet!';
             });
     </script>
+
+    <div class="bg-img">
+        <div class="container">
+            <div class="topnav">
+                <a>
+                    <img src="path/navbarOutlet/engine.png" alt="engine">
+                    <label>Motor</label>
+                </a>
+                <a>
+                    <img src="path/navbarOutlet/brake.png" alt="Brake">
+                    <label>Frenos</label>
+                </a>
+                <a>
+                    <img src="path/navbarOutlet/power.png" alt="Power">
+                    <label>Engine</label>
+                </a>
+                <a>
+                    <img src="path/navbarOutlet/fuel.png" alt="Fuel">
+                    <label>Gasolina</label>
+                </a>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
