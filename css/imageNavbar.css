@@ -7,19 +7,13 @@ body {
 }
 
 .bg-img {
-    /* The image used */
     background-image: url("img_nature.jpg");
     min-height: 380px;
-    /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    /* Needed to position the navbar */
     position: relative;
 }
-
-
-/* Position the navbar container inside the image */
 
 .container {
     position: absolute;
@@ -27,16 +21,9 @@ body {
     width: auto;
 }
 
-
-/* The navbar */
-
 .topnav {
     overflow: hidden;
-    background-color: #000000;
 }
-
-
-/* Navbar links */
 
 .topnav a {
     background-color: azure;
@@ -55,11 +42,48 @@ body {
 
 img {
     width: 30px;
-    /* Ajusta el tamaño según sea necesario */
     height: auto;
-    /* Mantén la proporción */
     vertical-align: middle;
-    /* Alinea la imagen con el texto */
     margin-right: 8px;
-    /* Opcional: Espacio entre la imagen y el texto */
+}
+
+input {
+    border: 2px solid #000000;
+    border-radius: 12px;
+    padding: 3px;
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.bg-img,
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin-left: 6%;
+}
+
+
+}
+input {
+    margin-left: 6%;
+    width: 500px;
+    border: 2px solid red;
+    border-radius: 12px;
+    padding: 5px;
+}
+table.ng-scope {
+    margin-left: 5%;
+    margin-top: -20%;
 }
