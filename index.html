@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Proyecto AngularJS</title>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+</head>
+
+<body ng-app="miApp">
+
+    <div ng-controller="miControlador">
+        <h1>{{ mensaje }}</h1>
+    </div>
+
+    <script>
+        angular.module('miApp', [])
+            .controller('miControlador', function($scope) {
+                $scope.mensaje = 'Initial project!';
+            });
+    </script>
+</body>
+
+</html>
