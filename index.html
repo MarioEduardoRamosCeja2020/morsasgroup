@@ -8,46 +8,90 @@
 
     <link rel="stylesheet" href="css/imageNavbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <script src="node_modules/angular/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
 </head>
 
-<body ng-app="myApp">
-
-    <div ng-controller="myController">
-        <h1>{{ message }}</h1>
+<body ng-app="outletApp" ng-controller="outletController">
+    <h1>Productos outlet</h1>
+    <h3>Busca mas productos y conoce nuestros <strong>increibles descuentos</strong></h3>
+    <div>
+        <input type="text" id="search" ng-model="searchQuery" placeholder="Escribe para buscar">
     </div>
-
-    <script>
-        angular.module('myApp', [])
-            .controller('myController', function($scope) {
-                $scope.message = 'Productos outlet!';
-            });
-    </script>
 
     <div class="bg-img">
         <div class="container">
             <div class="topnav">
-                <a>
+                <a ng-click="setSystem('engine')">
                     <img src="path/navbarOutlet/engine.png" alt="engine">
                     <label>Motor</label>
                 </a>
-                <a>
+                <a ng-click="setSystem('brake')">
                     <img src="path/navbarOutlet/brake.png" alt="Brake">
                     <label>Frenos</label>
                 </a>
-                <a>
+                <a ng-click="setSystem('power')">
                     <img src="path/navbarOutlet/power.png" alt="Power">
-                    <label>Engine</label>
+                    <label>Encendido</label>
                 </a>
-                <a>
+                <a ng-click="setSystem('fuel')">
                     <img src="path/navbarOutlet/fuel.png" alt="Fuel">
                     <label>Gasolina</label>
                 </a>
             </div>
         </div>
     </div>
+
+
+
+    <div ng-if="items.length === 0">
+        <p>Cargando los datos...</p>
+    </div>
+    <table border="1" ng-if="items.length > 0">
+        <thead>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in items | filter:searchQuery">
+                <td>
+                    <b>{{ item.keyItem }}</b><br> {{ item.Name }}<br> {{ item.description }}
+                </td>
+                <td>{{ item.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        angular.module('outletApp', [])
+            .controller('outletController', function($scope, $http) {
+
+                $scope.items = [];
+                $scope.selectedSystem = '';
+
+
+                $http.get('http://localhost:3000/api/item')
+                    .then(function(response) {
+
+                        $scope.items = response.data;
+                        console.log($scope.items);
+                    })
+                    .catch(function(error) {
+                        console.error('Error al obtener los datos:', error);
+                    });
+
+                $scope.setSystem = function(system) {
+                    $http.post('http://localhost:3000/api/itemBySystem?system=' + system)
+                        .then(function(response) {
+                            $scope.items = response.data;
+                            console.log($scope.items);
+                        })
+                        .catch(function(error) {
+
+                            console.error('Error al obtener los datos:', error);
+                        });
+                };
+
+            });
+    </script>
+
 </body>
 
 </html>
